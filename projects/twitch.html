@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head lang="de"></head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>check twitch TV, FreeCodeCamp challenge</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var url = '';
+      var link = '';
+      var channels = ["test_channel", "brunofin", "comster404", "freecodecamp", "gekoles", "sedrion2", "terakilobyte", "habathcx","RobotCaleb","thomasballinger","noobs2ninjas","beohoff", "ESL_SC2", "OgamingSC2", "cretetion", "storbeck"];
+    
+      for(var i = 0; i < channels.length; i++) {
+        makeList(channels[i]);
+      }
+      function makeList(channelName) {
+        var node = document.createElement("div");
+        var link = 'https://twitch.tv/' + channels[i];
+        var linkNode = document.createElement('a');
+        var linkText = document.createTextNode('Channel Name: ' + channelName);
+        var statusText = document.createTextNode('Status: account closed');
+        var status = document.createElement("SPAN");
+        status.setAttribute('class', 'kkk');
+        status.appendChild(statusText);
+        linkNode.setAttribute('href', link);
+        status.setAttribute('id', channelName);
+        linkNode.appendChild(linkText);
+        node.appendChild(linkNode);
+        node.appendChild(status);
+        node.setAttribute('class', 'runcode card4 list-item');
+        document.getElementById("twitch-list").appendChild(node);
+      }
+      for(var i = 0; i < channels.length; i++) {
+        var channelName = channels[i];
+        getURL(channelName, function(content, error, name){
+          if (error != null) {
+            console.log('error', + error);
+          } else {
+            var text = JSON.parse(content);
+            if (text.stream == null) {
+              document.getElementById(name).innerHTML = "Status:  offline";
+              document.getElementById(name).style.color = "red";
+            } else {
+              document.getElementById(name).innerHTML = "Status:  online";
+              document.getElementById(name).style.color = "green";
+              var info = document.createElement('p');
+              var infoText = document.createTextNode( text.stream.game);
+              info.appendChild(infoText);
+              document.getElementById(name).appendChild(info);
+            }
+          }
+        });
+      }
+    }, false);
+    function getURL(channelName, callback) {
+      url = 'https://api.twitch.tv/kraken/streams/'+channelName +'?client_id=t0f7m9hjxn3sv3o9vavwopx16963a6a';
+      var req = new XMLHttpRequest();
+      req.open("GET", url, true);
+      req.addEventListener("load", function() {
+        if (req.status < 400)
+          callback(req.responseText, null, channelName);
+        else
+          callback(null, new Error("Request failed: " +  req.statusText));
+      });
+      req.addEventListener("error", function() {
+        callback(null, new Error("Network error"));
+      });
+      req.send(null);
+    }
+    
+  </script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+  <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
+  <link rel="stylesheet" href="./../css/styles.css" type="text/css">
+  <body>
+    <nav class="sidenav card4" id="sidenav">
+      <div class="sidenav-header"><span><a href="./../index.html">rugead</a></span><span class="closenav hide-large" onclick="_close()"><i class="fa fa-close" aria-hidden="true"></i></span></div>
+      <div>&nbsp;</div>
+      <div class="accHeader" onclick="myFunction('basic')"><i class="fa fa-plus-square-o plus" aria-hidden="true"><span class="accHeaderText">BASIC ALLGORITHM SCRIPTINGs</span></i></div>
+      <div class="acc" id="basic"><a href="./../basic/reverse-a-string.html">reverse a string</a><a href="./../basic/factorialize-a-number.html">factorialize a number</a><a href="./../basic/check-for-palindrom.html"> check for palindrom</a><a href="./../basic/find-longest-word-in-a-string.html">find longest word in a string</a><a href="./../basic/title-case-a-sentence.html">title case a sentence</a><a href="./../basic/return-largest-numbers-in-array.html">return-largest-numbers-in-array</a><a href="./../basic/confirm-the-ending.html">confirm-the-ending</a><a href="./../basic/repeat-a-string.html">repeat a string</a><a href="./../basic/truncate-a-string.html">truncate a string</a><a href="./../basic/chunky-monkey.html">chunky monkey</a><a href="./../basic/slasher-flick.html">slasher flick</a><a href="./../basic/mutations.html">mutations</a><a href="./../basic/falsy-bouncer.html">falsy-bouncer</a><a href="./../basic/seek-and-destroy.html">seek-and-destroy</a><a href="./../basic/caesars-cipher.html">caesars cipher</a></div>
+      <div class="accHeader" onclick="myFunction('intermediateFrontEndDevelopmentProjects')"><i class="fa fa-plus-square-o plus" aria-hidden="true"><span class="accHeaderText">Front End Development Projects</span></i></div>
+      <div class="acc" id="intermediateFrontEndDevelopmentProjects"><a href="./../projects/quotes.html">Getting random Quotes</a><a href="./../projects/wiki.html">A Wikipedia Viewer</a><a href="./../projects/weather.html">Show the Local Weather</a><a href="./../projects/twitch.html">Use the Twitchtv JSON API</a></div>
+    </nav>
+    <div class="all">
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right">Use the Twitchtv JSON API<span class="small">a FreeCodeCamp challenge</span></span>
+      </div>
+      <div>
+        <div class="description description-links">
+          <div class="showdescription">
+            <p>Objective: Build a <a href="http://codepen.io" target="_blank">codepen.io </a>  app that is functionally similar to this: <a href="https://codepen.io/FreeCodeCamp/full/Myvqmo/" target="_blank">https://codepen.io/FreeCodeCamp/full/Myvqmo/</a>.</p>
+            <p>Fulfill the below <a href="https://en.wikipedia.org/wiki/User_story" target="_blank">user stories</a>. Use whichever libraries or APIs you need. Give it your own personal style.</p>
+            <p>User Story: I can see whether Free Code Camp is currently streaming on Twitch.tv.</p>
+            <p>User Story: I can click the status output and be sent directly to the Free Code Camp's Twitch.tv channel.</p>
+            <p>User Story: if a Twitch user is currently streaming, I can see additional details about what they are streaming.</p>
+            <p>User Story: I will see a placeholder notification if a streamer has closed their Twitch account (or the account never existed). You can verify this works by adding brunofin and comster404 to your array of Twitch streamers.</p>
+            <p>Hint: See an example call to Twitch.tv's JSONP API at <a href="http://forum.freecodecamp.com/t/use-the-twitchtv-json-api/19541" target="_blank">http://forum.freecodecamp.com/t/use-the-twitchtv-json-api/19541</a>.</p>
+            <p>Hint: The relevant documentation about this API call is here: <a href="https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md#get-streamschannel" target="_blank">https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md#get-streamschannel</a>.</p>
+            <p>Hint: Here's an array of the Twitch.tv usernames of people who regularly stream: ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"]</p>
+          </div>
+        </div>
+        <div class="codework">
+          <div class="list-container" id="twitch-list"></div>
+        </div>
+      </div>
+      <div class="footer">
+        <div><i class="fa fa-copyright" aria-hidden="true"></i>2017 by Rudolf Vogel - An der Fleschermühle 14 - 87509 Immenstadt - rugead@gmail.com</div>
+      </div>
+    </div>
+    <script>
+      function _open() {
+        document.querySelector('#sidenav').classList.add('animate-left');
+        document.getElementById("sidenav").style.display = "block";
+      }
+      function _close() {
+      document.getElementById("sidenav").style.display = "none";
+      document.querySelector('#sidenav').classList.remove('animate-left');
+      }
+      
+      function myFunction(id) {
+          var x = document.getElementById(id);
+          var y = x.previousElementSibling.childNodes[0].childNodes[0].innerHTML;
+      
+          console.log('ID => ', y);
+          if (x.className.indexOf("show") == -1) {
+              x.className += " show";
+              x.previousElementSibling.className += " accHeaderShow";
+              x.previousElementSibling.innerHTML =  "<i class='fa fa-minus-square-o' aria-hidden='true'><span class='accHeaderText'>"+ y + "</span>"
+      
+            } else {
+              x.className = x.className.replace(" show", "");
+              x.previousElementSibling.className = x.previousElementSibling.className.replace(" accHeaderShow", "");
+                x.previousElementSibling.innerHTML =  "<i class='fa fa-plus-square-o' aria-hidden='true'><span class='accHeaderText'>"+ y + "</span>"
+            }
+      }
+      
+    </script>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <html>
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeCodeCamp challenge: reverse a string</title>
+  <title>FreeCodeCamp challenge: check for palindrom</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
   <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
@@ -17,19 +17,21 @@
       <div class="acc" id="intermediateFrontEndDevelopmentProjects"><a href="./../projects/quotes.html">Getting random Quotes</a><a href="./../projects/wiki.html">A Wikipedia Viewer</a><a href="./../projects/weather.html">Show the Local Weather</a><a href="./../projects/twitch.html">Use the Twitchtv JSON API</a></div>
     </nav>
     <div class="all">
-      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> reverse a string<span class="small">a FreeCodeCamp challenge</span></span>
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> check for palindrom<span class="small">a FreeCodeCamp challenge</span></span>
       </div>
       <div>
         <div class="description description-links">
           <div class="showdescription">
-            <p>Reverse the provided string.</p>
-            <p>You may need to turn the string into an array before you can reverse it. Your result must be a string.</p>
+            <p>Return true if the given string is a palindrome. Otherwise, return false.</p>
+            <p>A palindrome is a word or sentence that's spelled the same way both forward and backward, ignoring punctuation, case, and spacing.</p>
+            <Note></Note>
+            <p>You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols) and turn everything lower case in order to check for palindromes.</p>
+            <p>We'll pass strings with varying formats, such as "racecar", "RaceCar", and "race CAR" among others.</p>
+            <p>We'll also pass strings with special symbols, such as "2A3*3a2", "2A3 3a2", and "2_A3*3#A2".</p>
             <p>Here are some helpful links:</p>
             <ul class="description-links fa-ul">
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">Global String Object</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">String.prototype.split()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank">Array.prototype.reverse()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank">Array.prototype.join()</a></li>
+              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace" target="_blank">String.prototype.replace()</a></li>
+              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase">String.prototype.toLowerCase()</a></li>
             </ul>
           </div>
         </div>
@@ -38,11 +40,19 @@
             <div class="overlay"><span class="closeOverlay" onclick="closeOverlay()"><i class="fa fa-close" aria-hidden="true"></i></span>
               <div class="result"></div>
             </div>
-            <pre><code class="language-js" overflow="scroll">function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+            <pre><code class="language-js" overflow="scroll">function palindrome(str) {
+    var strippedStr = str.toLowerCase().replace(/\W|_/g, '');
+    var reversedStr = strippedStr.split('').reverse().join('');
+
+    if (reversedStr === strippedStr) {
+        console.log('RETURN => ', true);
+        overlay(true);
+        return true;
+    } else {
+        console.log('RETURN => ', false);
+        overlay(false);
+        return false;
+    }
 }
 </code></pre>
           </div>
@@ -82,16 +92,33 @@
       
     </script>
     <script>
-      var input = `// reverseString("hello"); // should return a string.
-      // reverseString("hello"); // should become "olleh".
-      // reverseString("Howdy"); // should become "ydwoH".
-      // reverseString("Greetings from Earth"); // should return "htraE morf sgniteerG".`;
+      var input = `// palindrome("eye"); // should return a boolean.
+        // palindrome("eye"); // should return true.
+        // palindrome("_eye"); // should return true.
+        // palindrome("race car"); // should return true.
+        // palindrome("not a palindrome"); // should return false.
+        // palindrome("A man, a plan, a canal. Panama"); // should return true.
+        // palindrome("never odd or even"); // should return true.
+        // palindrome("nope"); // should return false.
+        // palindrome("almostomla"); // should return false.
+        // palindrome("My age is 0, 0 si ega ym."); // should return true.
+        // palindrome("1 eye for of 1 eye."); // should return false.
+        // palindrome("0_0 (: /- :) 0-0"); // should return true.
+        // palindrome("five|_/|four"); // should return false.`;
     </script>
-    <script>function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+    <script>function palindrome(str) {
+    var strippedStr = str.toLowerCase().replace(/\W|_/g, '');
+    var reversedStr = strippedStr.split('').reverse().join('');
+
+    if (reversedStr === strippedStr) {
+        console.log('RETURN => ', true);
+        overlay(true);
+        return true;
+    } else {
+        console.log('RETURN => ', false);
+        overlay(false);
+        return false;
+    }
 }
 
     </script>

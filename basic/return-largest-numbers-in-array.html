@@ -2,7 +2,7 @@
 <html>
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeCodeCamp challenge: reverse a string</title>
+  <title>FreeCodeCamp challenge: return largest numbers in array</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
   <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
@@ -17,19 +17,16 @@
       <div class="acc" id="intermediateFrontEndDevelopmentProjects"><a href="./../projects/quotes.html">Getting random Quotes</a><a href="./../projects/wiki.html">A Wikipedia Viewer</a><a href="./../projects/weather.html">Show the Local Weather</a><a href="./../projects/twitch.html">Use the Twitchtv JSON API</a></div>
     </nav>
     <div class="all">
-      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> reverse a string<span class="small">a FreeCodeCamp challenge</span></span>
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> return largest numbers in array<span class="small">a FreeCodeCamp challenge</span></span>
       </div>
       <div>
         <div class="description description-links">
           <div class="showdescription">
-            <p>Reverse the provided string.</p>
-            <p>You may need to turn the string into an array before you can reverse it. Your result must be a string.</p>
+            <p>Return an array consisting of the largest number from each provided sub-array. For simplicity, the provided array will contain exactly 4 sub-arrays.</p>
+            <p>Remember, you can iterate through an array with a simple for loop, and access each member with array syntax arr[i].</p>
             <p>Here are some helpful links:</p>
             <ul class="description-links fa-ul">
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">Global String Object</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">String.prototype.split()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank">Array.prototype.reverse()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank">Array.prototype.join()</a></li>
+              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators" target="_blank">Comparison Operators</a></li>
             </ul>
           </div>
         </div>
@@ -38,11 +35,22 @@
             <div class="overlay"><span class="closeOverlay" onclick="closeOverlay()"><i class="fa fa-close" aria-hidden="true"></i></span>
               <div class="result"></div>
             </div>
-            <pre><code class="language-js" overflow="scroll">function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+            <pre><code class="language-js" overflow="scroll">function largestOfFour(arr) {
+  var out = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    var iii = 0;
+    for (var a = 0; a < arr[i].length; a++) {
+      if (iii < arr[i][a]) {
+        iii =  arr[i][a];
+      }
+    }
+    out.push(iii);
+  }
+
+  console.log("RETURN => ", out);
+  overlay([out]);
+  return out;
 }
 </code></pre>
           </div>
@@ -82,16 +90,26 @@
       
     </script>
     <script>
-      var input = `// reverseString("hello"); // should return a string.
-      // reverseString("hello"); // should become "olleh".
-      // reverseString("Howdy"); // should become "ydwoH".
-      // reverseString("Greetings from Earth"); // should return "htraE morf sgniteerG".`;
+      var input = `largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]); // should return an array.
+      largestOfFour([[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]]); // should return [27,5,39,1001].
+      largestOfFour([[4, 9, 1, 3], [13, 35, 18, 26], [32, 35, 97, 39], [1000000, 1001, 857, 1]]); // should return [9, 35, 97, 1000000].`
     </script>
-    <script>function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+    <script>function largestOfFour(arr) {
+  var out = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    var iii = 0;
+    for (var a = 0; a < arr[i].length; a++) {
+      if (iii < arr[i][a]) {
+        iii =  arr[i][a];
+      }
+    }
+    out.push(iii);
+  }
+
+  console.log("RETURN => ", out);
+  overlay([out]);
+  return out;
 }
 
     </script>

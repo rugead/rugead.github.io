@@ -2,7 +2,6 @@
 <html>
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeCodeCamp challenge: reverse a string</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
   <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
@@ -17,19 +16,16 @@
       <div class="acc" id="intermediateFrontEndDevelopmentProjects"><a href="./../projects/quotes.html">Getting random Quotes</a><a href="./../projects/wiki.html">A Wikipedia Viewer</a><a href="./../projects/weather.html">Show the Local Weather</a><a href="./../projects/twitch.html">Use the Twitchtv JSON API</a></div>
     </nav>
     <div class="all">
-      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> reverse a string<span class="small">a FreeCodeCamp challenge</span></span>
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right">chunky monkey<span class="small">a FreeCodeCamp challenge</span></span>
       </div>
       <div>
         <div class="description description-links">
           <div class="showdescription">
-            <p>Reverse the provided string.</p>
-            <p>You may need to turn the string into an array before you can reverse it. Your result must be a string.</p>
+            <p>Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.</p>
             <p>Here are some helpful links:</p>
             <ul class="description-links fa-ul">
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">Global String Object</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">String.prototype.split()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank">Array.prototype.reverse()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank">Array.prototype.join()</a></li>
+              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank">Array.prototype.push()</a></li>
+              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank">Array.prototype.slice()</a></li>
             </ul>
           </div>
         </div>
@@ -38,11 +34,28 @@
             <div class="overlay"><span class="closeOverlay" onclick="closeOverlay()"><i class="fa fa-close" aria-hidden="true"></i></span>
               <div class="result"></div>
             </div>
-            <pre><code class="language-js" overflow="scroll">function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+            <pre><code class="language-js" overflow="scroll">function chunkArrayInGroups(arr, size) {
+  var start = 0;
+  var ccc =[];
+
+
+    function mmm(xxx, yyy) {
+      if ( xxx.length <= start) {
+
+        // console.log('yyy ',yyy);
+        return ccc;
+      } else {
+        ccc.push(xxx.slice(start, start + yyy ));
+        start = start + yyy;
+        // console.log('www ',ccc);
+        // console.log(start);
+        return mmm(xxx, yyy);
+      }
+    }
+    var qqq = mmm(arr, size);
+    console.log('RETURN => ', qqq);
+    overlay(JSON.stringify(qqq));
+    return qqq;
 }
 </code></pre>
           </div>
@@ -82,16 +95,36 @@
       
     </script>
     <script>
-      var input = `// reverseString("hello"); // should return a string.
-      // reverseString("hello"); // should become "olleh".
-      // reverseString("Howdy"); // should become "ydwoH".
-      // reverseString("Greetings from Earth"); // should return "htraE morf sgniteerG".`;
+      var input = `chunkArrayInGroups(["a", "b", "c", "d"], 2) should return [["a", "b"], ["c", "d"]].
+      chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3) should return [[0, 1, 2], [3, 4, 5]].
+      chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2) should return [[0, 1], [2, 3], [4, 5]].
+      chunkArrayInGroups([0, 1, 2, 3, 4, 5], 4) should return [[0, 1, 2, 3], [4, 5]].
+      chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6], 3) should return [[0, 1, 2], [3, 4, 5], [6]].
+      chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 4) should return [[0, 1, 2, 3], [4, 5, 6, 7], [8]].
+      chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 2) should return [[0, 1], [2, 3], [4, 5], [6, 7], [8]].`
     </script>
-    <script>function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+    <script>function chunkArrayInGroups(arr, size) {
+  var start = 0;
+  var ccc =[];
+
+
+    function mmm(xxx, yyy) {
+      if ( xxx.length <= start) {
+
+        // console.log('yyy ',yyy);
+        return ccc;
+      } else {
+        ccc.push(xxx.slice(start, start + yyy ));
+        start = start + yyy;
+        // console.log('www ',ccc);
+        // console.log(start);
+        return mmm(xxx, yyy);
+      }
+    }
+    var qqq = mmm(arr, size);
+    console.log('RETURN => ', qqq);
+    overlay(JSON.stringify(qqq));
+    return qqq;
 }
 
     </script>

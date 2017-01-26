@@ -2,7 +2,7 @@
 <html>
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeCodeCamp challenge: reverse a string</title>
+  <title>FreeCodeCamp challenge: factorialize a number</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
   <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
@@ -17,19 +17,18 @@
       <div class="acc" id="intermediateFrontEndDevelopmentProjects"><a href="./../projects/quotes.html">Getting random Quotes</a><a href="./../projects/wiki.html">A Wikipedia Viewer</a><a href="./../projects/weather.html">Show the Local Weather</a><a href="./../projects/twitch.html">Use the Twitchtv JSON API</a></div>
     </nav>
     <div class="all">
-      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> reverse a string<span class="small">a FreeCodeCamp challenge</span></span>
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> factorialize a number<span class="small">a FreeCodeCamp challenge</span></span>
       </div>
       <div>
         <div class="description description-links">
           <div class="showdescription">
-            <p>Reverse the provided string.</p>
-            <p>You may need to turn the string into an array before you can reverse it. Your result must be a string.</p>
+            <p>Return the factorial of the provided integer.</p>
+            <p>If the integer is represented with the letter n, a factorial is the product of all positive integers pless than or equal to n.</p>
+            <p>Factorials are often represented with the shorthand notation n!</p>
+            <p>For example: 5! = 1 * 2 * 3 * 4 * 5 = 120.</p>
             <p>Here are some helpful links:</p>
             <ul class="description-links fa-ul">
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">Global String Object</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">String.prototype.split()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank">Array.prototype.reverse()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank">Array.prototype.join()</a></li>
+              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators" target="_blank">Arithmetic Operators</a></li>
             </ul>
           </div>
         </div>
@@ -38,11 +37,15 @@
             <div class="overlay"><span class="closeOverlay" onclick="closeOverlay()"><i class="fa fa-close" aria-hidden="true"></i></span>
               <div class="result"></div>
             </div>
-            <pre><code class="language-js" overflow="scroll">function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+            <pre><code class="language-js" overflow="scroll">function factorialize(num) {
+    var factorial = 1;
+    for (num; num > 1; num--) {
+        factorial *= num;
+    }
+
+    console.log('RETURN => ', factorial);
+    overlay(factorial);
+    return factorial;
 }
 </code></pre>
           </div>
@@ -82,16 +85,21 @@
       
     </script>
     <script>
-      var input = `// reverseString("hello"); // should return a string.
-      // reverseString("hello"); // should become "olleh".
-      // reverseString("Howdy"); // should become "ydwoH".
-      // reverseString("Greetings from Earth"); // should return "htraE morf sgniteerG".`;
+      var input = `factorialize(5); should return a number.
+      factorialize(5); should return 120.
+      factorialize(10); should return 3628800.
+      factorialize(20); should return 2432902008176640000.
+      factorialize(0); should return 1.`
     </script>
-    <script>function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+    <script>function factorialize(num) {
+    var factorial = 1;
+    for (num; num > 1; num--) {
+        factorial *= num;
+    }
+
+    console.log('RETURN => ', factorial);
+    overlay(factorial);
+    return factorial;
 }
 
     </script>

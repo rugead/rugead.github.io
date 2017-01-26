@@ -2,7 +2,7 @@
 <html>
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeCodeCamp challenge: reverse a string</title>
+  <title>FreeCodeCamp challenge: find longest word in a string</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
   <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
@@ -17,19 +17,17 @@
       <div class="acc" id="intermediateFrontEndDevelopmentProjects"><a href="./../projects/quotes.html">Getting random Quotes</a><a href="./../projects/wiki.html">A Wikipedia Viewer</a><a href="./../projects/weather.html">Show the Local Weather</a><a href="./../projects/twitch.html">Use the Twitchtv JSON API</a></div>
     </nav>
     <div class="all">
-      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> reverse a string<span class="small">a FreeCodeCamp challenge</span></span>
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> find longest word in a string<span class="small">a FreeCodeCamp challenge</span></span>
       </div>
       <div>
         <div class="description description-links">
           <div class="showdescription">
-            <p>Reverse the provided string.</p>
-            <p>You may need to turn the string into an array before you can reverse it. Your result must be a string.</p>
+            <p>Return the length of the longest word in the provided sentence.</p>
+            <p>Your response should be a number.</p>
             <p>Here are some helpful links:</p>
             <ul class="description-links fa-ul">
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">Global String Object</a></li>
               <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">String.prototype.split()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank">Array.prototype.reverse()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank">Array.prototype.join()</a></li>
+              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length" target="_blank">String.length</a></li>
             </ul>
           </div>
         </div>
@@ -38,11 +36,38 @@
             <div class="overlay"><span class="closeOverlay" onclick="closeOverlay()"><i class="fa fa-close" aria-hidden="true"></i></span>
               <div class="result"></div>
             </div>
-            <pre><code class="language-js" overflow="scroll">function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+            <pre><code class="language-js" overflow="scroll">function findLongestWord(str) {
+  var words = str.split(' ');
+
+  // --> my second solution
+  var lengthArr = words.map(wordsLength);
+  var max = Math.max(...lengthArr);
+
+  // --> my third solution
+  var reduceArr = lengthArr.reduce(reduceLength);
+  var reduceArr_2 = words.map(wordsLength).reduce( (a,b) => ( a > b ? a : b) );
+
+  function wordsLength(word){
+    return word.length;
+  }
+
+  function reduceLength(a, b) {
+    return (a > b ? a : b);
+  }
+
+// --> my first solution
+  var highScore = 0;
+  for (var i = 0 ; i < words.length; i++) {
+    var score = words[i].length;
+
+    if( score >  highScore) {
+      highScore = score;
+    }
+  }
+
+  console.log('RETURN HIGHSCORE => ', highScore );
+  overlay(highScore);
+  return highScore;
 }
 </code></pre>
           </div>
@@ -82,16 +107,45 @@
       
     </script>
     <script>
-      var input = `// reverseString("hello"); // should return a string.
-      // reverseString("hello"); // should become "olleh".
-      // reverseString("Howdy"); // should become "ydwoH".
-      // reverseString("Greetings from Earth"); // should return "htraE morf sgniteerG".`;
+      var input = `findLongestWord('The quick brown fox jumped over the lazy dog'); // should return a number.
+      findLongestWord('The quick brown fox jumped over the lazy dog'); // should return 6.
+      findLongestWord('May the force be with you'); // should return 5.
+      findLongestWord('Google do a barrel roll'); // should return 6.
+      findLongestWord('What is the average airspeed velocity of an unladen swallow'); // should return 8.
+      findLongestWord('What if we try a super-long word such as otorhinolaryngology'); // should return 19.`
     </script>
-    <script>function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
+    <script>function findLongestWord(str) {
+  var words = str.split(' ');
+
+  // --> my second solution
+  var lengthArr = words.map(wordsLength);
+  var max = Math.max(...lengthArr);
+
+  // --> my third solution
+  var reduceArr = lengthArr.reduce(reduceLength);
+  var reduceArr_2 = words.map(wordsLength).reduce( (a,b) => ( a > b ? a : b) );
+
+  function wordsLength(word){
+    return word.length;
+  }
+
+  function reduceLength(a, b) {
+    return (a > b ? a : b);
+  }
+
+// --> my first solution
+  var highScore = 0;
+  for (var i = 0 ; i < words.length; i++) {
+    var score = words[i].length;
+
+    if( score >  highScore) {
+      highScore = score;
+    }
+  }
+
+  console.log('RETURN HIGHSCORE => ', highScore );
+  overlay(highScore);
+  return highScore;
 }
 
     </script>

@@ -2,7 +2,58 @@
 <html>
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeCodeCamp challenge: reverse a string</title>
+  <title>check local weather, FreeCodeCamp challenge</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script>$(document).ready(function() {
+  var lat = 0;
+  var lon = 0;
+  var celsius = 0;
+  var fahrenheit = 0;
+  var temp = 0;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      $("#data").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
+    });
+  }
+
+  $.getJSON('http://ipinfo.io', function(data){
+    console.log(data);
+      $("#city").html(data.city);
+  });
+
+  $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=829bf3048acd1b9cbd465d78ccc28467&units=celsius",
+    function(data) {
+      temp = data.main.temp;
+      $("#wetterbild").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png" );
+      $("#temperatur").html(Math.round(temp) + " °K");
+      $("#description").html(data.weather[0].description);
+  });
+
+// var wet = http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=829bf3048acd1b9cbd465d78ccc28467&units=celsius
+
+  $("#kelvin").on("click", function(){
+      // °C = (°F - 32) * 5/9
+      console.log('kelvin ', Math.round(temp) + " °K");
+      $("#temperatur").html(Math.round(temp) + " °K");
+  });
+
+  $("#celsius").on("click", function(){
+      // °C = (°F - 32) * 5/9
+      console.log('celsius', Math.round(temp - 273.15) + " °C");
+      $("#temperatur").html(Math.round(temp - 273.15) + " °C");
+  });
+
+  $("#fahrenheit").on("click", function(){
+    // °F = °C * 1,8 + 32
+    console.log('fahrenheit', Math.round(temp * 1.8 - 459.67) + " °F");
+    $("#temperatur").html(Math.round(temp * 1.8 - 459.67) + " °F");
+  });
+});
+
+  </script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
   <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
@@ -17,36 +68,35 @@
       <div class="acc" id="intermediateFrontEndDevelopmentProjects"><a href="./../projects/quotes.html">Getting random Quotes</a><a href="./../projects/wiki.html">A Wikipedia Viewer</a><a href="./../projects/weather.html">Show the Local Weather</a><a href="./../projects/twitch.html">Use the Twitchtv JSON API</a></div>
     </nav>
     <div class="all">
-      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> reverse a string<span class="small">a FreeCodeCamp challenge</span></span>
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right">Show the Local Weather<span class="small">a FreeCodeCamp challenge</span></span>
       </div>
       <div>
         <div class="description description-links">
           <div class="showdescription">
-            <p>Reverse the provided string.</p>
-            <p>You may need to turn the string into an array before you can reverse it. Your result must be a string.</p>
-            <p>Here are some helpful links:</p>
-            <ul class="description-links fa-ul">
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">Global String Object</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">String.prototype.split()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank">Array.prototype.reverse()</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank">Array.prototype.join()</a></li>
-            </ul>
+            <p>Objective: Build a CodePen.io app that is functionally similar to <a href="http://codepen.io/FreeCodeCamp/full/bELRjV.">this</a>.</p>
+            <p>Fulfill the below user stories. Use whichever libraries or APIs you need. Give it your own personal style.</p>
+            <p>User Story: I can see the weather in my current location.</p>
+            <p>User Story: I can see a different icon or background image (e.g. snowy mountain, hot desert) depending on the weather.</p>
+            <p>User Story: I can push a button to toggle between Fahrenheit and Celsius.</p>
+            <p>We recommend using the <a href="https://openweathermap.org/current#geo">Open Weather API</a>. This will require creating a free API key. Normally you want to avoid exposing API keys on CodePen, but we haven't been able to find a keyless API for weather.</p>
           </div>
         </div>
         <div class="codework">
-          <div class="showcode">
-            <div class="overlay"><span class="closeOverlay" onclick="closeOverlay()"><i class="fa fa-close" aria-hidden="true"></i></span>
-              <div class="result"></div>
+          <div class="center-block">
+            <div class="card4">
+              <div class="center-text">
+                <h3>Wetter in&nbsp; <span class="ccc" id="city"></span></h3>
+                <h3 id="description"></h3>
+                <div><img id="wetterbild"></div>
+                <h3 id="temperatur"></h3>
+              </div>
+              <div class="center-block">
+                <div class="card-btn"><a id="fahrenheit" href="#"> Fahrenheit&nbsp;<strong>&nbsp; °F</strong></a>&nbsp;</div>
+                <div class="card-btn"><a id="celsius" href="#"> Celsius&nbsp;<strong>&nbsp; °C</strong></a>&nbsp;</div>
+                <div class="card-btn"><a id="kelvin" href="#"> Kelvin&nbsp;<strong>&nbsp; °K</strong></a></div>
+              </div>
             </div>
-            <pre><code class="language-js" overflow="scroll">function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
-}
-</code></pre>
           </div>
-          <div class="list-container" id="run-function"></div>
         </div>
       </div>
       <div class="footer">
@@ -81,22 +131,5 @@
       }
       
     </script>
-    <script>
-      var input = `// reverseString("hello"); // should return a string.
-      // reverseString("hello"); // should become "olleh".
-      // reverseString("Howdy"); // should become "ydwoH".
-      // reverseString("Greetings from Earth"); // should return "htraE morf sgniteerG".`;
-    </script>
-    <script>function reverseString(str) {
-    var result = str.split('').reverse().join('');
-    console.log('RETURN => ', result);
-    overlay(result);
-    return result;
-}
-
-    </script>
-    <script src="./../js/overlay.js"></script>
-    <script src="./../js/make-buttons.js"></script>
-    <script src="./../js/prism.js"></script>
   </body>
 </html>
