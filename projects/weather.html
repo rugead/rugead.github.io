@@ -3,7 +3,7 @@
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>check local weather, FreeCodeCamp challenge</title>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   <script>$(document).ready(function() {
   var lat = 0;
   var lon = 0;
@@ -24,7 +24,7 @@
       $("#city").html(data.city);
   });
 
-  $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=829bf3048acd1b9cbd465d78ccc28467&units=celsius",
+  $.getJSON("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=829bf3048acd1b9cbd465d78ccc28467&units=celsius",
     function(data) {
       temp = data.main.temp;
       $("#wetterbild").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png" );
@@ -112,24 +112,24 @@
       document.getElementById("sidenav").style.display = "none";
       document.querySelector('#sidenav').classList.remove('animate-left');
       }
-      
+
       function myFunction(id) {
           var x = document.getElementById(id);
           var y = x.previousElementSibling.childNodes[0].childNodes[0].innerHTML;
-      
+
           console.log('ID => ', y);
           if (x.className.indexOf("show") == -1) {
               x.className += " show";
               x.previousElementSibling.className += " accHeaderShow";
               x.previousElementSibling.innerHTML =  "<i class='fa fa-minus-square-o' aria-hidden='true'><span class='accHeaderText'>"+ y + "</span>"
-      
+
             } else {
               x.className = x.className.replace(" show", "");
               x.previousElementSibling.className = x.previousElementSibling.className.replace(" accHeaderShow", "");
                 x.previousElementSibling.innerHTML =  "<i class='fa fa-plus-square-o' aria-hidden='true'><span class='accHeaderText'>"+ y + "</span>"
             }
       }
-      
+
     </script>
   </body>
 </html>
