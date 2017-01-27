@@ -3,10 +3,10 @@
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>check local weather, FreeCodeCamp challenge</title>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://api.openweathermap.org/data/2.5/weather?q=London,uk&callback=test"></script>
+  <script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.placefinder where text="17.4186947,78.5425238" and gflags="R")&format=json&callback=callbackFunction"></script>
+
   <script>
-    function test() {
+    function callbackFunction() {
       console.log('hallo');
     }
   </script>
