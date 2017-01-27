@@ -12,6 +12,7 @@
       xmlhttp.onload = function() { displayResponse(xmlhttp.responseText)};
       var bustCache = '?' + new Date().getTime();
       xmlhttp.open("GET", url + bustCache, true);
+      xmlhttp.withCredentials = true;
       xmlhttp.send();
 
       function displayResponse(response) {
