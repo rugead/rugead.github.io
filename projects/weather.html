@@ -5,25 +5,7 @@
   <title>check local weather, FreeCodeCamp challenge</title>
 
 
-  <script>
-    function getResponse() {
-      var xmlhttp = new XMLHttpRequest();
-      var url = "https://api.darksky.net/forecast/7f9ae1f403bf2345a37dbcc71f60d0d6/37.8267,-122.4233";
-      xmlhttp.onload = function() { displayResponse(xmlhttp.responseText)};
-      var bustCache = '?' + new Date().getTime();
-      xmlhttp.open("GET", url + bustCache, true);
-      xmlhttp.withCredentials = true;
-      xmlhttp.send();
-
-      function displayResponse(response) {
-        var xy = JSON.parse(response);
-        console.log(' displayRespons ',xy);
-
-      };
-    };
-    document.addEventListener('DOMContentLoaded', getResponse, false);
-  </script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script>
   jQuery(document).ready(function($) {
     $.ajax({
