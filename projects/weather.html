@@ -3,7 +3,7 @@
   <head lang="de"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>check local weather, FreeCodeCamp challenge</title>
-  <script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.placefinder where text="17.4186947,78.5425238" and gflags="R")&format=json&callback=callbackFunction"></script>
+  <script src="https://api.darksky.net/forecast/7f9ae1f403bf2345a37dbcc71f60d0d6/37.8267,-122.4233"></script>
 
   <script>
     function callbackFunction() {
