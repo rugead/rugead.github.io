@@ -4,12 +4,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>check local weather, FreeCodeCamp challenge</title>
 
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script>
   jQuery(document).ready(function($) {
     $.ajax({
-    url : "https://api.wunderground.com/api/687fb2c5192b74a3/conditions/q/CA/San_Francisco.json",
+    url : "https://api.wunderground.com/api/687fb2c5192b74a3/geolookup/conditions/q/IA/Cedar_Rapids.json",
     dataType : "jsonp",
     success : function(parsed_json) {
     var location = parsed_json['location']['city'];
@@ -19,7 +18,6 @@
     });
   });
   </script>
-
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
