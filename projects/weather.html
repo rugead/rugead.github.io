@@ -8,66 +8,32 @@
     jQuery(document).ready(function($) {
       var lat = 0;
       var lon = 0;
-      var celsius = 0;
-      var fahrenheit = 0;
-      var temp = 0;
-      var coordinates = '';
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          $("#data").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
           lat = position.coords.latitude;
           lon = position.coords.longitude;
         });
       }
 
-        jQuery.ajax({
-          url: "https://api.wunderground.com/api/687fb2c5192b74a3/conditions/q/" + lat +"," + lon + ".json",
-          dataType : "jsonp",
-          success : function(parsed_json) {
-            console.log("url ", url);
-            console.log('parsed_json', parsed_json);
+      jQuery.ajax({
+        url: "https://api.wunderground.com/api/687fb2c5192b74a3/conditions/q/" + lat +"," + lon + ".json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+          console.log("url ", url);
+          console.log('parsed_json', parsed_json);
           var location = parsed_json['location']['city'];
           var temp_f = parsed_json['current_observation']['temp_f'];
           alert("Current temperature in " + location + " is: " + temp_f);
-          }
-        });
-
-
-
-
-
-
-      $.getJSON('https://ipinfo.io', function(data){
-        console.log(data);
-          $("#city").html(data.city);
+        }
       });
 
-
-      //
-      // $("#kelvin").on("click", function(){
-      //     // °C = (°F - 32) * 5/9
-      //     console.log('kelvin ', Math.round(temp) + " °K");
-      //     $("#temperatur").html(Math.round(temp) + " °K");
-      // });
-      //
-      // $("#celsius").on("click", function(){
-      //     // °C = (°F - 32) * 5/9
-      //     console.log('celsius', Math.round(temp - 273.15) + " °C");
-      //     $("#temperatur").html(Math.round(temp - 273.15) + " °C");
-      // });
-      //
-      // $("#fahrenheit").on("click", function(){
-      //   // °F = °C * 1,8 + 32
-      //   console.log('fahrenheit', Math.round(temp * 1.8 - 459.67) + " °F");
-      //   $("#temperatur").html(Math.round(temp * 1.8 - 459.67) + " °F");
-      // });
+      jQuery.getJSON('https://ipinfo.io', function(data){
+        console.log(data);
+        $("#city").html(data.city);
+      });
     });
   </script>
-
-
-
-
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
