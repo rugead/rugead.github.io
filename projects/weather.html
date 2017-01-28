@@ -21,20 +21,16 @@
         });
       }
 
-        $.ajax({
-          // http://api.wunderground.com/api/687fb2c5192b74a3/geolookup/conditions/q/CA/San_Francisco.json
-          // http://api.wunderground.com/api/687fb2c5192b74a3/conditions/q/37.776289,-122.395234.json
-        // url : "https://api.wunderground.com/api/687fb2c5192b74a3/geolookup/conditions/q/IA/Cedar_Rapids.json",
-
-        url: "https://api.wunderground.com/api/687fb2c5192b74a3/conditions/q/" + lat +"," + lon + ".json",
-        dataType : "jsonp",
-        success : function(parsed_json) {
-          console.log("url ", url);
-          console.log('parsed_json', parsed_json);
-        var location = parsed_json['location']['city'];
-        var temp_f = parsed_json['current_observation']['temp_f'];
-        alert("Current temperature in " + location + " is: " + temp_f);
-        }
+        jQuery.ajax({
+          url: "https://api.wunderground.com/api/687fb2c5192b74a3/conditions/q/" + lat +"," + lon + ".json",
+          dataType : "jsonp",
+          success : function(parsed_json) {
+            console.log("url ", url);
+            console.log('parsed_json', parsed_json);
+          var location = parsed_json['location']['city'];
+          var temp_f = parsed_json['current_observation']['temp_f'];
+          alert("Current temperature in " + location + " is: " + temp_f);
+          }
         });
 
 
@@ -47,26 +43,26 @@
           $("#city").html(data.city);
       });
 
-    
 
-      $("#kelvin").on("click", function(){
-          // °C = (°F - 32) * 5/9
-          console.log('kelvin ', Math.round(temp) + " °K");
-          $("#temperatur").html(Math.round(temp) + " °K");
-      });
-
-      $("#celsius").on("click", function(){
-          // °C = (°F - 32) * 5/9
-          console.log('celsius', Math.round(temp - 273.15) + " °C");
-          $("#temperatur").html(Math.round(temp - 273.15) + " °C");
-      });
-
-      $("#fahrenheit").on("click", function(){
-        // °F = °C * 1,8 + 32
-        console.log('fahrenheit', Math.round(temp * 1.8 - 459.67) + " °F");
-        $("#temperatur").html(Math.round(temp * 1.8 - 459.67) + " °F");
-      });
-    });
+    //
+    //   $("#kelvin").on("click", function(){
+    //       // °C = (°F - 32) * 5/9
+    //       console.log('kelvin ', Math.round(temp) + " °K");
+    //       $("#temperatur").html(Math.round(temp) + " °K");
+    //   });
+    //
+    //   $("#celsius").on("click", function(){
+    //       // °C = (°F - 32) * 5/9
+    //       console.log('celsius', Math.round(temp - 273.15) + " °C");
+    //       $("#temperatur").html(Math.round(temp - 273.15) + " °C");
+    //   });
+    //
+    //   $("#fahrenheit").on("click", function(){
+    //     // °F = °C * 1,8 + 32
+    //     console.log('fahrenheit', Math.round(temp * 1.8 - 459.67) + " °F");
+    //     $("#temperatur").html(Math.round(temp * 1.8 - 459.67) + " °F");
+    //   });
+    // });
   </script>
 
 
