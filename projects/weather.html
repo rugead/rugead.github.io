@@ -19,8 +19,11 @@
       jQuery.ajax({
         url: "https://api.wunderground.com/api/687fb2c5192b74a3/conditions/q/" + lat +"," + lon + ".json",
         dataType : "jsonp",
-        success :   console.log('parsed_json', parsed_json)
-
+        success : function(parsed_json) {
+          // console.log("url ", url);
+          console.log('parsed_json', parsed_json);
+          alert("Current temperature in " );
+        }
       });
 
       jQuery.getJSON('https://ipinfo.io', function(data){
