@@ -6,7 +6,7 @@
   <script>
     function getQuote() {
       var xmlhttp = new XMLHttpRequest();
-      var url = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
+      var url = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
       xmlhttp.onload = function() { displayQuote(xmlhttp.responseText)};
       var bustCache = '?' + new Date().getTime();
       xmlhttp.open("GET", url + bustCache, true);
@@ -18,7 +18,7 @@
       };
     };
     document.addEventListener('DOMContentLoaded', getQuote, false);
-
+    
   </script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
@@ -69,24 +69,24 @@
       document.getElementById("sidenav").style.display = "none";
       document.querySelector('#sidenav').classList.remove('animate-left');
       }
-
+      
       function myFunction(id) {
           var x = document.getElementById(id);
           var y = x.previousElementSibling.childNodes[0].childNodes[0].innerHTML;
-
+      
           console.log('ID => ', y);
           if (x.className.indexOf("show") == -1) {
               x.className += " show";
               x.previousElementSibling.className += " accHeaderShow";
               x.previousElementSibling.innerHTML =  "<i class='fa fa-minus-square-o' aria-hidden='true'><span class='accHeaderText'>"+ y + "</span>"
-
+      
             } else {
               x.className = x.className.replace(" show", "");
               x.previousElementSibling.className = x.previousElementSibling.className.replace(" accHeaderShow", "");
                 x.previousElementSibling.innerHTML =  "<i class='fa fa-plus-square-o' aria-hidden='true'><span class='accHeaderText'>"+ y + "</span>"
             }
       }
-
+      
     </script>
   </body>
 </html>
