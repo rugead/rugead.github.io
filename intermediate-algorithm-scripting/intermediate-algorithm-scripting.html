@@ -2,7 +2,8 @@
 <html>
   <head lang="en"></head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FreeCodeCamp challenge: xxx</title>
+  <title>intermediate algorithm scripting, some FreeCodeCamp challanges</title>
+  <link rel="stylesheet" href="./../css/codemirror.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
   <link rel="stylesheet" href="./../css/prism-coy.css" type="text/css">
@@ -47,29 +48,38 @@
       </ul>
     </nav>
     <div class="all">
-      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right"> xxx<span class="small">a FreeCodeCamp challenge</span></span>
+      <div class="challenge"><span class="opennav hide-large left" onclick="_open()"><i class="fa fa-bars" aria-hidden="true"></i></span><span class="aaa right">intermediate algorithm scripting<span class="small">a FreeCodeCamp challenge</span></span>
       </div>
       <div>
         <div class="description description-links">
           <div class="showdescription">
-            <p>xxx</p>
-            <p>Here are some helpful links:</p>
-            <ul class="description-links fa-ul">
-              <li><i class="fa-li fa fa-check-square"></i><a href="xxx">xxx</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="xxx">xxxq</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="xxx">xxx</a></li>
-              <li><i class="fa-li fa fa-check-square"></i><a href="xxx">xxx</a></li>
-            </ul>
+            <p>Just select an example and rund the code.</p>
+            <p>You even can alter the code or write your own.</p>
+            <p>Have some fun.</p>
           </div>
         </div>
         <div class="codework">
-          <div class="showcode">
-            <div class="overlay"><span class="closeOverlay" onclick="closeOverlay()"><i class="fa fa-close" aria-hidden="true"></i></span>
-              <div class="result"></div>
+          <article>
+            <form class="intermediate-btn">
+              <select class="intermediate-btn runcode card4 list-item select" onchange="getURL(this.options[this.selectedIndex].value)">
+                <option value="./js/choose-example.js">{ choose code example and run it }</option>
+                <option value="./js/01-sum-all-numbers.js">SUM ALL NUMBERS IN RANGE</option>
+                <option value="./js/02-diff-two-arrays.js">DIFF OFF 2 ARRAYS</option>
+                <option value="./js/03-roman-numeral-converter.js">ROMAN NUMERAL CONVERTER</option>
+                <option value="./js/04-where-art-thou.js">WHERE ARE THOU</option>
+                <option value="./js/05-search-and-replace.js">SEARCH AND REPLACE</option>
+                <option value="./js/06-pig-latin.js">PIG LATIN</option>
+                <option value="./js/07-dna-pairing.js">DNA PAIRING</option>
+                <option value="./js/08-missing-letter.js">MISSING LETTER</option>
+                <option value="./js/08-boo-whoo.js">BOO WHO</option>
+                <option value="./js/10-sorted-union.js">SORTED UNION</option>
+              </select>
+            </form>
+            <div class="cm-div" id="hello" data-output-height="100%">
+              <textarea class="cm"></textarea>
             </div>
-            <pre><code class="language-js" overflow="scroll"></code></pre>
-          </div>
-          <div class="list-container" id="run-function"></div>
+            <div class="butt intermediate-btn"></div>
+          </article>
         </div>
       </div>
       <div class="footer">
@@ -87,11 +97,18 @@
       }
       
     </script>
-    <script>var input = `xxx`</script>
+    <script src="./js/codemirror.js"></script>
+    <script src="./js/codemirror-matchbrackets.js"></script>
+    <script src="./js/codemirror-javascript.js"></script>
+    <script src="./js/codemirror-make-editor.js"></script>
     <script>
+      var modal = document.querySelector('.output-div');
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          modal.innerHTML = "";
+        }
+      };
     </script>
-    <script src="../js/overlay.js"></script>
-    <script src="../js/make-buttons.js"></script>
-    <script src="../js/prism.js"></script>
   </body>
 </html>
